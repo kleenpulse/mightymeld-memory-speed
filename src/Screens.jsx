@@ -15,13 +15,20 @@ export const possibleTileContents = [
   icons.GiFlowerEmblem,
   icons.GiOpenBook,
 ];
+const sharedClass = "flex flex-col w-full max-w-[320px] h-[320px] gap-y-8 rounded-lg p-2 mt-16 items-center"
+const flexCon = "flex justify-center w-full"
 
 export function StartScreen({ start }) {
   return (
-    <div>
-      <button onClick={start} className="bg-gray-400 text-white p-3">
+    <div className={flexCon}>
+        <div className={`${sharedClass} bg-pink-50 pt-16`}>
+          <h1 className="text-3xl text-pink-500 font-bold">Memory</h1>
+          <p className="text-pink-500 font-medium">Flip over tiles looking for pairs</p>
+      
+      <button onClick={start} className="bg-gradient-to-b from-pink-400 to-pink-600 rounded-full transition duration-300 shadow-md shadow-black/10 hover:opacity-70 text-white px-16 py-2">
         Play
       </button>
+      </div>
     </div>
   );
 }
@@ -108,13 +115,16 @@ export function PlayScreen({ end }) {
   };
 
   return (
-    <>
-      <div>
-        {getTiles(6).map((tile, i) => (
+    <div className={flexCon}>
+        <div className={`${sharedClass}`}>
+        <p className="text-indigo-500 font-medium text-lg">Tries <span className="ml-1 bg-indigo-200 rounded-md px-2">{tryCount}</span> </p>
+      <div className="rounded-lg bg-indigo-50 grid grid-cols-4 p-3 gap-3 place-items-center w-full">
+        {getTiles(16).map((tile, i) => (
           <Tile key={i} flip={() => flip(i)} {...tile} />
         ))}
       </div>
-      {tryCount}
-    </>
+        </div>
+      
+    </div>
   );
 }
